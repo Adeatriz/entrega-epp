@@ -171,9 +171,15 @@ async function enviar() {
   const entregaRut = document.getElementById("entregaRut").value;
   const entregaCargo = document.getElementById("entregaCargo").value;
 
-  // VALIDACIÓN
+  // VALIDACIÓN TRABAJADOR
   if (trabajador === "") {
     alert("Seleccione trabajador");
+    return;
+  }
+
+  // VALIDACIÓN FIRMAS
+  if (firmaTrabajador.isEmpty() || firmaEntrega.isEmpty()) {
+    alert("Ambas firmas son obligatorias");
     return;
   }
 
@@ -212,10 +218,6 @@ async function enviar() {
   }
 }
 
-  if(firmaTrab.isEmpty() || firmaEntrega.isEmpty()){
-    alert("Ambas firmas son obligatorias");
-    return;
-  }
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -316,5 +318,6 @@ function limpiarFirmaEntrega() {
 
 </body>
 </html>
+
 
 
