@@ -158,12 +158,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-async function enviar(){
+async function enviar() {
 
-  if(select.value===""){
+  const trabajador = document.getElementById("trabajador").value;
+  const rut = document.getElementById("rut").value;
+  const epp = document.getElementById("epp").value;
+  const cantidad = document.getElementById("cantidad").value;
+  const talla = document.getElementById("talla").value;
+  const tipoEntrega = document.getElementById("tipoEntrega").value;
+  const fechaEntrega = document.getElementById("fechaEntrega").value;
+  const entregaNombre = document.getElementById("entregaNombre").value;
+  const entregaRut = document.getElementById("entregaRut").value;
+  const entregaCargo = document.getElementById("entregaCargo").value;
+
+  // VALIDACIÓN
+  if (trabajador === "") {
     alert("Seleccione trabajador");
     return;
   }
+
+  try {
+
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxvrz9RKeegXY-rnSp1SwcOvMDp_S9yORvVauS85yOTEyoUIdGsf0TcFs0FG7ZWN6O_nA/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        trabajador,
+        rut,
+        epp,
+        cantidad,
+        talla,
+        tipoEntrega,
+        fechaEntrega,
+        entregaNombre,
+        entregaRut,
+        entregaCargo
+      })
+    });
+
+    const result = await response.json();
+
+    if (result.result === "success") {
+      alert("Entrega registrada correctamente");
+    } else {
+      alert("Error al registrar en Google Sheets");
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Error de conexión con Google Sheets");
+  }
+}
 
   if(firmaTrab.isEmpty() || firmaEntrega.isEmpty()){
     alert("Ambas firmas son obligatorias");
@@ -269,4 +316,5 @@ function limpiarFirmaEntrega() {
 
 </body>
 </html>
+
 
