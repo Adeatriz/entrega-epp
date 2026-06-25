@@ -182,6 +182,20 @@ async function enviar() {
   const entregaRut = document.getElementById("entregaRut");
   const entregaCargo = document.getElementById("entregaCargo");
 
+  console.log({
+  select,
+  rut,
+  cargo,
+  elemento,
+  cantidad,
+  talla,
+  tipo,
+  fecha,
+  entregaNombre,
+  entregaRut,
+  entregaCargo
+});
+
   if(select.value === ""){
     alert("Seleccione trabajador");
     return;
