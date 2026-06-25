@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function enviar() {
 
-  //if(firmaTrab.isEmpty() || firmaEntrega.isEmpty()){//
+  //if(firmaTrabajador.isEmpty() || firmaEntrega.isEmpty()){//
   if (firmaTrabajador.isEmpty() || firmaEntrega.isEmpty()) {
     alert("Ambas firmas son obligatorias");
     return;
@@ -226,7 +226,7 @@ async function enviar() {
   doc.text("Tipo: "+tipo.value,10,y); y+=12;
 
   doc.text("Firma Trabajador:",10,y);
-  doc.addImage(firmaTrab.toDataURL(),'PNG',10,y+5,80,30);
+  doc.addImage(firmaTrabajador.toDataURL(),'PNG',10,y+5,80,30);
 
   y+=45;
 
