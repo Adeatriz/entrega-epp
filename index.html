@@ -132,10 +132,20 @@ listaEPP.forEach(e=>{
 });
 
 function cargarTrabajador(){
+  const select = document.getElementById("trabajadorSelect");
+  const rut = document.getElementById("rut");
+  const cargo = document.getElementById("cargo");
+
   const i = select.value;
-  if(i==="") return;
+
+  if (i === "") return;
+
   rut.value = trabajadores[i].rut;
   cargo.value = trabajadores[i].cargo;
+  //const i = select.value;
+  //if(i==="") return;
+  //rut.value = trabajadores[i].rut;
+  //cargo.value = trabajadores[i].cargo;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -170,14 +180,14 @@ async function enviar() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
-  const select = document.getElementById("trabajador");
+  const select = document.getElementById("trabajadorSelect");
   const rut = document.getElementById("rut");
   const cargo = document.getElementById("cargo");
-  const elemento = document.getElementById("epp");
+  const elemento = document.getElementById("elemento");
   const cantidad = document.getElementById("cantidad");
   const talla = document.getElementById("talla");
-  const tipo = document.getElementById("tipoEntrega");
-  const fecha = document.getElementById("fechaEntrega");
+  const tipo = document.getElementById("tipo");
+  const fecha = document.getElementById("fecha");
   const entregaNombre = document.getElementById("entregaNombre");
   const entregaRut = document.getElementById("entregaRut");
   const entregaCargo = document.getElementById("entregaCargo");
