@@ -246,7 +246,10 @@ async function enviar() {
   doc.text("Cargo: "+entregaCargo.value,10,y);
 
   doc.addImage(firmaEntrega.toDataURL(),'PNG',10,y+10,80,30);
-
+  
+  console.log("Entrega Nombre:", entregaNombre.value);
+  console.log("Entrega RUT:", entregaRut.value);
+  console.log("Entrega Cargo:", entregaCargo.value);
   const pdfBase64 = doc.output('datauristring').split(',')[1];
 
   try {
