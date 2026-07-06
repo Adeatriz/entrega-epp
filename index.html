@@ -62,13 +62,17 @@ h2 { text-align:center; }
 <div class="section">
   <h3>Persona que Entrega</h3>
 
-  <input type="text" id="entregaNombre" placeholder="Lida Arguello">
-  <input type="text" id="entregaRut" placeholder="26.536.653-8">
-  <input type="text" id="entregaCargo" placeholder="Asistencia Operaciones">
+  <select id="personaEntrega" onchange="cargarPersona()">
+    <option value="">Seleccione...</option>
+    </select>
 
-  <canvas id="firmaEntrega" width="500" height="200" style="border:1px solid #ccc;"></canvas>
+    <input type="text" id="entregaNombre" readonly>
+    <input type="text" id="entregaRut" readonly>
+    <input type="text" id="entregaCargo" readonly>
 
-  <div style="text-align:center; margin-top:10px;">
+    <canvas id="firmaEntrega" width="500" height="200" style="border:1px solid #ccc;"></canvas>
+
+    <div style="text-align:center; margin-top:10px;">
     <button type="button" onclick="limpiarFirmaEntrega()">Limpiar firma</button>
   </div>
 </div>
@@ -98,7 +102,25 @@ const trabajadores = [
   {nombre:"Mauricio Guerra", rut:"11.383.973-2", cargo:"Ayudante"},
   {nombre:"Jefferson Aponte", rut:"22.548.889-4", cargo:"Ayudante"}
 ];
+//================ PERSONAS QUE ENTREGAN ================
 
+const personasEntrega = [
+  {
+    nombre:"Lida Arguello",
+    rut:"26.536.653-8",
+    cargo:"Asistencia Operaciones"
+  },
+  {
+    nombre:"Sergio Carmona",
+    rut:"14.104.101-0",
+    cargo:"Encargado Zona Arica"
+  },
+  {
+    nombre:"Mauricio Guerra",
+    rut:"11.383.973-2",
+    cargo:"Ayudante Iquique"
+  }
+];
 const listaEPP = [
   "Casco",
   "Guante cabritilla",
@@ -130,7 +152,14 @@ listaEPP.forEach(e=>{
   op.textContent = e;
   eppSelect.appendChild(op);
 });
+const personaSelect = document.getElementById("personaEntrega");
 
+personasEntrega.forEach((p, i) => {
+  const op = document.createElement("option");
+  op.value = i;
+  op.textContent = p.nombre;
+  personaSelect.appendChild(op);
+});
 function cargarTrabajador(){
   const select = document.getElementById("trabajadorSelect");
   const rut = document.getElementById("rut");
@@ -146,6 +175,22 @@ function cargarTrabajador(){
   //if(i==="") return;
   //rut.value = trabajadores[i].rut;
   //cargo.value = trabajadores[i].cargo;
+}
+  function cargarPersona(){
+
+  const i = document.getElementById("personaEntrega").value;
+
+  if(i===""){
+    document.getElementById("entregaNombre").value="";
+    document.getElementById("entregaRut").value="";
+    document.getElementById("entregaCargo").value="";
+    return;
+  }
+
+  document.getElementById("entregaNombre").value = personasEntrega[i].nombre;
+  document.getElementById("entregaRut").value = personasEntrega[i].rut;
+  document.getElementById("entregaCargo").value = personasEntrega[i].cargo;
+
 }
 
 document.addEventListener("DOMContentLoaded", function () {
