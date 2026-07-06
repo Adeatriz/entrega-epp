@@ -270,6 +270,7 @@ async function enviar() {
     });
 
     const json = await res.json();
+    console.log(json);
 
     alert("Entrega registrada. Folio: "+json.folio);
     location.reload();
