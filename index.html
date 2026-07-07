@@ -71,7 +71,7 @@ h2 { text-align:center; }
     <input type="hidden" id="entregaRut">
     <input type="hidden" id="entregaCargo">
   
-    <h3>Firma Encargado de Entrega</h3>
+    <h3>Firma</h3>
     <canvas id="firmaEntrega" width="500" height="200" style="border:1px solid #ccc;"></canvas>
 
     <div style="text-align:center; margin-top:10px;">
@@ -277,7 +277,7 @@ async function enviar() {
 
   if (logoBase64) {
   // Logo más grande y centrado
-  doc.addImage(logoBase64, "PNG", 68, 8, 50, 35);
+  doc.addImage(logoBase64, "PNG", 68, 8, 45, 30,{align:"center"}); //ALIGN CENTER PRUEBA//
   }
 
   let y = 55;
@@ -355,7 +355,6 @@ async function enviar() {
 
   doc.setFont("helvetica","bold");
   doc.text("Encargado de Entrega:",10,y);
-  doc.text("Firma Encargado de Entrega:",10,y);
   y+=8;
 
   doc.setFont("helvetica","bold");
@@ -374,7 +373,10 @@ async function enviar() {
   doc.text("Cargo:",10,y);
   doc.setFont("helvetica","normal");
   doc.text(entregaCargo.value,35,y);
-
+  y+=8;
+  
+  doc.setFont("helvetica","bold"); //prueba//
+  doc.text("Firma Encargado de Entrega:",10,y); //prueba//
   doc.addImage(firmaEntrega.toDataURL(),'PNG',10,y+10,80,30);
 
   console.log("Entrega Nombre:", entregaNombre.value);
