@@ -39,6 +39,7 @@ h2 { text-align:center; }
 <h3>Detalle Entrega</h3>
 <select id="elemento"></select>
 <input type="number" id="cantidad" placeholder="Cantidad">
+console.log("Talla:", talla.value, typeof talla.value); //Prueba//
 <input type="text" id="talla" placeholder="Talla">
 <select id="tipo">
 <option>Entrega Inicial</option>
@@ -335,7 +336,7 @@ async function enviar() {
   doc.setFont("helvetica","bold");
   doc.text("Talla:",10,y);
   doc.setFont("helvetica","normal");
-  doc.text(talla.value,35,y);
+  doc.text(String(talla.value || ""),35,y);
   y+=8;
 
   doc.setFont("helvetica","bold");
