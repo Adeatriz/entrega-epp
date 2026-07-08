@@ -39,7 +39,6 @@ h2 { text-align:center; }
 <h3>Detalle Entrega</h3>
 <select id="elemento"></select>
 <input type="number" id="cantidad" placeholder="Cantidad">
-console.log("Talla:", talla.value, typeof talla.value); //Prueba//
 <input type="text" id="talla" placeholder="Talla">
 <select id="tipo">
 <option>Entrega Inicial</option>
@@ -96,7 +95,7 @@ const trabajadores = [
   {nombre:"Lida Arguello", rut:"26.536.653-8", cargo:"Asistencia Operaciones"},
   {nombre:"Daysi Arguello", rut:"25.697.058-9", cargo:"Asistente Administrativo"},
   {nombre:"Marco Trujillo", rut:"10.151.673-3", cargo:"Administrador General"},
-  {nombre:"Ignacio Araya", rut:"20.961.197-K", cargo:"Ayudante"},
+  {nombre:"Carlo Peri", rut:"12.437.615-7", cargo:"Ayudante"},
   {nombre:"Cristian Fernández", rut:"16.059.730-5", cargo:"Maestro"},
   {nombre:"Osvaldo Otaiza", rut:"16.704.772-6", cargo:"Chofer ayudante"},
   {nombre:"Jhon Zapata", rut:"25.812.721-8", cargo:"Ayudante"},
@@ -121,7 +120,7 @@ const personasEntrega = [
   {
     nombre:"Mauricio Guerra",
     rut:"11.383.973-2",
-    cargo:"Ayudante Iquique"
+    cargo:"Bodega Iquique"
   },
   {
     nombre:"Marco Trujillo",
@@ -131,7 +130,7 @@ const personasEntrega = [
    {
     nombre:"Jefferson Aponte",
     rut:"22.548.889-4",
-    cargo:"Ayudante Iquique"
+    cargo:"Bodega Iquique"
   },
  {
     nombre:"Juan Fernández",
@@ -278,7 +277,9 @@ async function enviar() {
 
   if (logoBase64) {
   // Logo más grande y centrado
-  doc.addImage(logoBase64, "PNG", 68, 8, 45, 30,{align:"center"}); //ALIGN CENTER PRUEBA//
+  //doc.addImage(logoBase64, "PNG", 68, 8, 45, 30,{align:"center"}); //ALIGN CENTER PRUEBA//
+  const logoAncho = 45;
+  doc.addImage(logoBase64, "PNG", (210 - logoAncho) / 2, 8, logoAncho, 30);
   }
 
   let y = 55;
@@ -332,6 +333,8 @@ async function enviar() {
   doc.setFont("helvetica","normal");
   doc.text(cantidad.value.toString(),35,y);
   y+=8;
+
+  console.log("Talla:", talla.value, typeof talla.value);
 
   doc.setFont("helvetica","bold");
   doc.text("Talla:",10,y);
